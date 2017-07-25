@@ -19,11 +19,6 @@ void Boarder::DrawBoarder(HDC hdc)
 	HBRUSH hbrush;
 
 	hpen = CreatePen(PS_SOLID, 0, Configure::FieldBoundColor);
-	hbrush = CreateSolidBrush(Configure::FieldInnerColor);
-	SelectObject(hdc, hpen);
-	SelectObject(hdc, hbrush);
-
-	hpen = CreatePen(PS_SOLID, 0, Configure::FieldBoundColor);
 
 	for (int i = Configure::BorderLeft + Configure::XBlockWidth; i < Configure::BorderRight; i += Configure::SmallestLength)
 	{
@@ -36,6 +31,6 @@ void Boarder::DrawBoarder(HDC hdc)
 		MoveToEx(hdc, Configure::BorderLeft, j, NULL);
 		LineTo(hdc, Configure::BorderRight, j);
 	}
-	DeleteObject(hbrush);
+
 	DeleteObject(hpen);
 }

@@ -30,4 +30,8 @@
 *.exe
 *.out
 *.app
+
 Game Sample Projects.sln
+x64
+.vs
+.Tetris\Debug\*
