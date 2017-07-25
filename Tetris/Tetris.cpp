@@ -13,6 +13,9 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
+// Global Variables for Tetris
+Boarder* boarder = nullptr;
+
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
@@ -29,6 +32,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // TODO: Place code here.
 
+
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_TETRIS, szWindowClass, MAX_LOADSTRING);
@@ -43,6 +47,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_TETRIS));
 
     MSG msg;
+
+	// Main Game Loop
+	boarder = new Boarder(Configure::BorderRight, Configure::BorderBottom);
+
 
     // Main message loop:
     while (GetMessage(&msg, nullptr, 0, 0))
@@ -148,10 +156,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-			for (int i = 0; i < 10; i++)
-				for (int j = 0; j < 20; j++)
-					Rectangle(hdc, 1, 1, 10, 10);
-					Rectangle(hdc, 1, 10, 10, 10);
+			boarder->DrawBoarder(hdc);
             EndPaint(hWnd, &ps);
 			return 0L;
         }
