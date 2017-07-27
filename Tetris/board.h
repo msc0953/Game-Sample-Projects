@@ -1,5 +1,5 @@
-#ifndef __TETRIS_BODER_H__
-#define __TETRIS_BODER_H__
+#ifndef __TETRIS_BOARDER_H__
+#define __TETRIS_BOARDER_H__
 #pragma once
 
 class Boarder

@@ -5,6 +5,7 @@
 #include "Tetris.h"
 #include "confing.h"
 #include "board.h"
+#include "BlockGroup.h"
 
 #define MAX_LOADSTRING 100
 
@@ -157,6 +158,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 			boarder->DrawBoarder(hdc);
+			BlockGroup current;
+			current.Draw(hdc);
             EndPaint(hWnd, &ps);
 			return 0L;
         }

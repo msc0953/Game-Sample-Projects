@@ -16,6 +16,10 @@ namespace Configure
 	const int BorderRight = 330;
 	const int SmallestLength = 32;
 
+	const int BlockGroupType = 19;
+
+	const COLORREF BLOCKBoundColor = RGB(0, 0, 0);
+
 	const COLORREF FieldBoundColor = RGB(255, 0, 0);
 	const COLORREF FieldInnerColor = RGB(200, 200, 200);
 }
