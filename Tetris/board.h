@@ -11,8 +11,6 @@ public:
 private:
 	int x;
 	int y;
-	int xblock;
-	int yblock;
 
 	int map[10][20];
 

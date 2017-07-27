@@ -35,3 +35,7 @@ Game Sample Projects.sln
 x64
 .vs
 .Tetris\Debug\*
+/Tetris/Debug
+/Tetris/Debug
+/Tetris/Tetris.vcxproj.filters
+/Tetris/Tetris.vcxproj

@@ -17,5 +17,5 @@ namespace Configure
 	const int SmallestLength = 32;
 
 	const COLORREF FieldBoundColor = RGB(255, 0, 0);
-	const COLORREF FieldInnerColor = RGB(255, 255, 255);
+	const COLORREF FieldInnerColor = RGB(200, 200, 200);
 }
