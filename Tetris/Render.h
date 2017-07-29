@@ -5,8 +5,14 @@ class Boarder;
 class Render
 {
 public:
-	Render::Render(HDC hdc) {}
+	Render::Render(HWND hwnd);
+
+private:
+	void DrawBoard();
 
 public:
-	void DrawBoard(Boarder* boarder);
+	void Draw();
+
+private:
+	HWND m_hWnd;
 };

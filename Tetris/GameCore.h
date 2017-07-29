@@ -7,7 +7,7 @@ class Render;
 class GameCore
 {
 public:
-	GameCore::GameCore();
+	GameCore::GameCore(HWND hwnd);
 	GameCore::~GameCore();
 
 public:
@@ -15,12 +15,14 @@ public:
 	void Update();
 	void HandleKeyDown(WPARAM wParam) {}
 	bool isRunning() { return true; }
-	void draw(HDC hdc);
+	void Draw();
 
 private:
 	BlockGroup* RandomBlocks();
 
 private:
+	HWND m_hwnd;
+
 	Render* m_render;
 	Input* m_input;
 

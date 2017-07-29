@@ -3,7 +3,7 @@
 class Boarder
 {
 public:
-	Boarder(int width, int height);
+	Boarder();
 	virtual ~Boarder() {};
 
 private:
@@ -13,5 +13,4 @@ private:
 	int map[10][20];
 
 public:
-	void DrawBoarder(HDC hdc);
 };
