@@ -19,3 +19,10 @@
 
 
 // TODO: reference additional headers your program requires here
+#include "Input.h"
+#include "Tetris.h"
+#include "confing.h"
+#include "board.h"
+#include "BlockGroup.h"
+#include "Input.h"
+#include "GameCore.h"

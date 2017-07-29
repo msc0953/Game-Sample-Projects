@@ -2,10 +2,6 @@
 //
 
 #include "stdafx.h"
-#include "Tetris.h"
-#include "confing.h"
-#include "board.h"
-#include "BlockGroup.h"
 
 #define MAX_LOADSTRING 100
 
@@ -14,8 +10,7 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-// Global Variables for Tetris
-Boarder* boarder = nullptr;
+GameCore* tetris = nullptr;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -30,9 +25,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
-
-    // TODO: Place code here.
-
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -50,18 +42,27 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
 	// Main Game Loop
-	boarder = new Boarder(Configure::BorderRight, Configure::BorderBottom);
+	tetris = new GameCore();
+	while (tetris->isRunning())
+	{
+		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+		{
+			if (msg.message == WM_QUIT || msg.message == WM_DESTROY || msg.message == WM_CLOSE)
+			{
+				break;
+			}
 
+			if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+			{
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+		tetris->update();
+	}
 
-    // Main message loop:
-    while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }
+	if (tetris)
+		delete tetris;
 
     return (int) msg.wParam;
 }
@@ -153,13 +154,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+	case WM_KEYDOWN:
+		{
+			tetris->HandleKeyDown(wParam);
+		}
+		break;
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-			boarder->DrawBoarder(hdc);
-			BlockGroup current;
-			current.Draw(hdc);
             EndPaint(hWnd, &ps);
 			return 0L;
         }
