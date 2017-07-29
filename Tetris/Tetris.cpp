@@ -10,7 +10,7 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 
-GameCore* tetris = nullptr;
+GameCore* tetris = new GameCore();;
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -31,6 +31,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_TETRIS, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
+	// Initialize Tetris
+	tetris->Init();
+
     // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
     {
@@ -42,7 +45,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     MSG msg;
 
 	// Main Game Loop
-	tetris = new GameCore();
 	while (tetris->isRunning())
 	{
 		if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
@@ -58,7 +60,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 				DispatchMessage(&msg);
 			}
 		}
-		tetris->update();
+		tetris->Update();
 	}
 
 	if (tetris)
@@ -163,6 +165,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+			tetris->draw(hdc);
             EndPaint(hWnd, &ps);
 			return 0L;
         }

@@ -7,10 +7,13 @@ class BlockGroup
 {
 public:
 	BlockGroup();
+	BlockGroup(int xpos, int ypos, int type);
 	virtual ~BlockGroup();
 
 public:
 	void Draw(HDC hdc);
+	
+	BlockGroup& BlockGroup::operator = (const BlockGroup& src);
 
 private:
 	void GetBlockGroupByType(int type);
@@ -23,5 +26,6 @@ private:
 
 	int m_x;
 	int m_y;
+	int m_type;
 };
 

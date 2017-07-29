@@ -1,5 +1,3 @@
-#ifndef __TETRIS_BOARDER_H__
-#define __TETRIS_BOARDER_H__
 #pragma once
 
 class Boarder
@@ -17,5 +15,3 @@ private:
 public:
 	void DrawBoarder(HDC hdc);
 };
-
-#endif

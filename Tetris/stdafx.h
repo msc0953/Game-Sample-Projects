@@ -16,6 +16,7 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <time.h>
 
 
 // TODO: reference additional headers your program requires here
@@ -26,3 +27,4 @@
 #include "BlockGroup.h"
 #include "Input.h"
 #include "GameCore.h"
+#include "Render.h"
