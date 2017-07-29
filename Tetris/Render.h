@@ -1,17 +1,17 @@
 #pragma once
 
-class Boarder;
 
 class Render
 {
 public:
 	Render::Render(HWND hwnd);
 
-private:
-	void DrawBoard();
-
 public:
-	void Draw();
+	void DrawBoard(Boarder* boarder);
+	void DrawBlocks(BlockGroup* blocks);
+
+private:
+	void DrawBlock(Block* block);
 
 private:
 	HWND m_hWnd;

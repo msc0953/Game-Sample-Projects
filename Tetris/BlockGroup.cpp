@@ -45,6 +45,25 @@ BlockGroup::~BlockGroup()
 
 }
 
+Block BlockGroup::GetBlocks(int index)
+{
+	int ix = 0;
+
+	for (int i = 0; i < 4; ++i)
+	{
+		for (int j = 0; j < 4; ++j)
+		{
+			if (m_pos[i][j])
+			{
+				m_block[index] = Block(i, j);
+				++ix;
+			}
+		}
+	}
+
+	return m_block[ix];
+}
+
 BlockGroup& BlockGroup::operator = (const BlockGroup& src)
 {
 	m_x = src.m_x;
@@ -69,26 +88,4 @@ void BlockGroup::GetBlockGroupByType(int type)
 	for (int i = 0; i < 4; ++i)
 		for (int j = 0; j<4; ++j)
 			m_pos[i][j] = BlockIndex[type][i][j];
-}
-
-void BlockGroup::DrawBlock(HDC hdc)
-{
-	int index = 0;
-
-	for (int i = 0; i < 4; ++i)
-		for (int j = 0; j < 4; ++j)
-		{
-			if (m_pos[i][j])
-			{
-				m_block[index] = Block(i, j);
-				m_block[index].draw(hdc);
-				++index;
-			}
-		}
-}
-
-void BlockGroup::Draw(HDC hdc)
-{
-	this->GetBlockGroupByType(m_type);
-	this->DrawBlock(hdc);	
 }

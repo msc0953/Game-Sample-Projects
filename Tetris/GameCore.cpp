@@ -39,8 +39,8 @@ void GameCore::Draw()
 	if (m_current == nullptr)
 		m_current = RandomBlocks();
 
-	m_render->Draw();
-	//m_current->Draw(hdc);
+	m_render->DrawBoard(m_boarder);
+	m_render->DrawBlocks(m_current);
 }
 
 BlockGroup* GameCore::RandomBlocks()

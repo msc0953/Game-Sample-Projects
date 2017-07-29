@@ -7,7 +7,8 @@ Render::Render(HWND hWnd)
 
 }
 
-void Render::DrawBoard()
+
+void Render::DrawBoard(Boarder* boarder)
 {
 	PAINTSTRUCT ps;
 	HDC hdc = BeginPaint(m_hWnd, &ps);
@@ -35,8 +36,29 @@ void Render::DrawBoard()
 	EndPaint(m_hWnd, &ps);
 }
 
-void Render::Draw()
+void Render::DrawBlocks(BlockGroup* blocks)
 {
-	this->DrawBoard();
+	for (int i = 0; i < 4; i++)
+		DrawBlock(&blocks->GetBlocks(i));
+}
+
+void Render::DrawBlock(Block* block)
+{
+	PAINTSTRUCT ps;
+	HDC hdc = BeginPaint(m_hWnd, &ps);
+
+	COLORREF InnerColor = Configure::BLOCKBoundColor;
+
+	HBRUSH hBrush = CreateSolidBrush(InnerColor);
+	SelectObject(hdc, hBrush);
+
+	int left = Configure::BorderLeft + block->getPosX() * Configure::SmallestLength + 1;
+	int top = Configure::BorderTop + block->getPosY() * Configure::SmallestLength + 1;
+
+	Rectangle(hdc, left, top, left + Configure::SmallestLength, top + Configure::SmallestLength);
+
+	DeleteObject(hBrush);
+
+	EndPaint(m_hWnd, &ps);
 }
 

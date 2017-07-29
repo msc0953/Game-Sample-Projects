@@ -9,6 +9,6 @@ private:
 public:
 	Block(int x=0, int y=0);
 
-public:
-	void draw(HDC hdc);
+	int getPosX();
+	int getPosY();
 };

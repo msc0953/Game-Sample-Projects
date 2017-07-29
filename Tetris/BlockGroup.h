@@ -1,7 +1,6 @@
 #pragma once
-#include "block.h"
-#include "confing.h"
 
+#include "block.h"
 
 class BlockGroup 
 {
@@ -11,13 +10,11 @@ public:
 	virtual ~BlockGroup();
 
 public:
-	void Draw(HDC hdc);
-	
-	BlockGroup& BlockGroup::operator = (const BlockGroup& src);
+	Block GetBlocks(int index);
+	BlockGroup& BlockGroup::operator=(const BlockGroup& src);
 
 private:
 	void GetBlockGroupByType(int type);
-	void DrawBlock(HDC hdc);
 
 private:
 	bool  m_pos[4][4];
