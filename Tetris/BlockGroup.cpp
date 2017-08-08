@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "BlockGroup.h"
+#include "Block.h"
 
 static const bool BlockIndex[Configure::BlockGroupType][4][4] =
 {
@@ -25,27 +26,32 @@ static const bool BlockIndex[Configure::BlockGroupType][4][4] =
 };
 
 BlockGroup::BlockGroup()
-	: m_x(0), m_y(0)
+	: m_x(0), m_y(0), m_blocks(nullptr)
 {
 	for (int i = 0; i < 4; i++)
 		for (int j = 0; j < 4; j++)
 			m_pos[i][j] = false;
+
+	m_blocks = new Block[4];
 }
 
 BlockGroup::BlockGroup(int x, int y, int type)
-	: m_x(x), m_y(y), m_type(type)
+	: m_x(x), m_y(y), m_type(type), m_blocks(nullptr)
 {
 	for (int i = 0; i < 4; ++i)
 		for (int j = 0; j < 4; ++j)
 			m_pos[i][j] = BlockIndex[type][i][j];
+
+	m_blocks = new Block[4];
 }
 
 BlockGroup::~BlockGroup()
 {
-
+	if (m_blocks)
+		delete m_blocks;
 }
 
-Block BlockGroup::GetBlocks(int index)
+Block* BlockGroup::GetBlocks(int index)
 {
 	int ix = 0;
 
@@ -55,16 +61,16 @@ Block BlockGroup::GetBlocks(int index)
 		{
 			if (m_pos[i][j])
 			{
-				m_block[index] = Block(i, j);
+				m_blocks[index] = Block(i, j);
 				++ix;
 			}
 		}
 	}
 
-	return m_block[ix];
+	return &m_blocks[ix];
 }
 
-BlockGroup& BlockGroup::operator = (const BlockGroup& src)
+BlockGroup& BlockGroup::operator=(const BlockGroup& src)
 {
 	m_x = src.m_x;
 	m_y = src.m_y;
@@ -72,7 +78,7 @@ BlockGroup& BlockGroup::operator = (const BlockGroup& src)
 	m_type = src.m_type;
 
 	for (int i = 0; i < 4; ++i)
-		m_block[i] = src.m_block[i];
+		m_blocks[i] = src.m_blocks[i];
 	
 	for (int i = 0; i < 4; ++i)
 		for (int j = 0; j < 4; ++j)

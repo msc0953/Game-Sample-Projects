@@ -38,8 +38,8 @@ void Render::DrawBoard(Boarder* boarder)
 
 void Render::DrawBlocks(BlockGroup* blocks)
 {
-	for (int i = 0; i < 4; i++)
-		DrawBlock(&blocks->GetBlocks(i));
+	for (int i = 0; i < 4; i++) 
+		DrawBlock(blocks->GetBlocks(i));
 }
 
 void Render::DrawBlock(Block* block)

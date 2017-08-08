@@ -25,6 +25,7 @@
 #include "confing.h"
 #include "board.h"
 #include "BlockGroup.h"
+#include "Block.h"
 #include "Input.h"
 #include "GameCore.h"
 #include "Render.h"

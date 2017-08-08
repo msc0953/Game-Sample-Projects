@@ -9,6 +9,14 @@ Block::Block(int x, int y)
 
 }
 
+Block& Block::operator=(const Block& src)
+{
+	m_x = src.m_x;
+	m_y = src.m_y;
+
+	return *this;
+}
+
 int Block::getPosX()
 {
 	return m_x;

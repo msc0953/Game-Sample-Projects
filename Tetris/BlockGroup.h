@@ -1,6 +1,6 @@
 #pragma once
 
-#include "block.h"
+class Block;
 
 class BlockGroup 
 {
@@ -10,8 +10,8 @@ public:
 	virtual ~BlockGroup();
 
 public:
-	Block GetBlocks(int index);
-	BlockGroup& BlockGroup::operator=(const BlockGroup& src);
+	Block* GetBlocks(int index);
+	BlockGroup& operator=(const BlockGroup& src);
 
 private:
 	void GetBlockGroupByType(int type);
@@ -19,7 +19,7 @@ private:
 private:
 	bool  m_pos[4][4];
 
-	Block m_block[4];
+	Block* m_blocks;
 
 	int m_x;
 	int m_y;
