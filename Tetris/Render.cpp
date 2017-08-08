@@ -1,18 +1,14 @@
 #include "stdafx.h"
 
-Render::Render(HWND hWnd)
-	: m_hWnd(hWnd)
+Render::Render()
 {
 
 
 }
 
 
-void Render::DrawBoard(Boarder* boarder)
+void Render::DrawBoard(HDC hdc, Boarder* boarder)
 {
-	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint(m_hWnd, &ps);
-
 	HPEN hpen;
 
 	hpen = CreatePen(PS_SOLID, 0, Configure::FieldBoundColor);
@@ -32,21 +28,19 @@ void Render::DrawBoard(Boarder* boarder)
 	}
 
 	DeleteObject(hpen);
-
-	EndPaint(m_hWnd, &ps);
 }
 
-void Render::DrawBlocks(BlockGroup* blocks)
+void Render::DrawBlocks(HDC hdc, BlockGroup* blocks)
 {
+	Block* b = blocks->GetBlocks();
 	for (int i = 0; i < 4; i++) 
-		DrawBlock(blocks->GetBlocks(i));
+	{
+		DrawBlock(hdc, &b[i]);
+	}
 }
 
-void Render::DrawBlock(Block* block)
+void Render::DrawBlock(HDC hdc, Block* block)
 {
-	PAINTSTRUCT ps;
-	HDC hdc = BeginPaint(m_hWnd, &ps);
-
 	COLORREF InnerColor = Configure::BLOCKBoundColor;
 
 	HBRUSH hBrush = CreateSolidBrush(InnerColor);
@@ -58,7 +52,5 @@ void Render::DrawBlock(Block* block)
 	Rectangle(hdc, left, top, left + Configure::SmallestLength, top + Configure::SmallestLength);
 
 	DeleteObject(hBrush);
-
-	EndPaint(m_hWnd, &ps);
 }
 

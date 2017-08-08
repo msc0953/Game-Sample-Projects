@@ -10,7 +10,7 @@ public:
 	virtual ~BlockGroup();
 
 public:
-	Block* GetBlocks(int index);
+	Block* GetBlocks();
 	BlockGroup& operator=(const BlockGroup& src);
 
 private:

@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
 
-GameCore::GameCore(HWND hwnd)
-	: m_hwnd(hwnd), m_previous(nullptr), m_current(nullptr), m_render(nullptr), m_boarder(nullptr)
+GameCore::GameCore()
+	: m_previous(nullptr), m_current(nullptr), m_render(nullptr), m_boarder(nullptr)
 {
 	m_boarder = new Boarder();
-	m_render = new Render(m_hwnd);
+	m_render = new Render();
 }
 
 GameCore::~GameCore()
@@ -34,13 +34,13 @@ void GameCore::Update()
 	
 }
 
-void GameCore::Draw()
+void GameCore::Draw(HDC hdc)
 {
 	if (m_current == nullptr)
 		m_current = RandomBlocks();
 
-	m_render->DrawBoard(m_boarder);
-	m_render->DrawBlocks(m_current);
+	m_render->DrawBoard(hdc, m_boarder);
+	m_render->DrawBlocks(hdc, m_current);
 }
 
 BlockGroup* GameCore::RandomBlocks()

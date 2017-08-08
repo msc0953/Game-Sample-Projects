@@ -3,15 +3,12 @@
 class Render
 {
 public:
-	Render::Render(HWND hwnd);
+	Render::Render();
 
 public:
-	void DrawBoard(Boarder* boarder);
-	void DrawBlocks(BlockGroup* blocks);
+	void DrawBoard(HDC hdc, Boarder* boarder);
+	void DrawBlocks(HDC hdc, BlockGroup* blocks);
 
 private:
-	void DrawBlock(Block* block);
-
-private:
-	HWND m_hWnd;
+	void DrawBlock(HDC hdc, Block* block);
 };

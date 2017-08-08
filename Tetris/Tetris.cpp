@@ -114,7 +114,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
-   tetris = new GameCore(hWnd);
+   tetris = new GameCore();
 
    if (!hWnd)
    {
@@ -165,7 +165,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
     case WM_PAINT:
         {
-			tetris->Draw();
+			PAINTSTRUCT ps;
+			HDC hdc = BeginPaint(hWnd, &ps);
+			tetris->Draw(hdc);
+			EndPaint(hWnd, &ps);
 			return 0L;
         }
         break;

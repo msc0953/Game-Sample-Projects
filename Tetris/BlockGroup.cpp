@@ -51,7 +51,7 @@ BlockGroup::~BlockGroup()
 		delete m_blocks;
 }
 
-Block* BlockGroup::GetBlocks(int index)
+Block* BlockGroup::GetBlocks()
 {
 	int ix = 0;
 
@@ -61,7 +61,7 @@ Block* BlockGroup::GetBlocks(int index)
 		{
 			if (m_pos[i][j])
 			{
-				m_blocks[index] = Block(i, j);
+				m_blocks[ix] = Block(i, j);
 				++ix;
 			}
 		}
