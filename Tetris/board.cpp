@@ -1,6 +1,4 @@
 #include "StdAfx.h"
-#include "board.h"
-#include "confing.h"
 
 Boarder::Boarder()
 	: x(Configure::WindowWidth /Configure::XBlockWidth), y(Configure::WindowHeight /Configure::YBlockHeight)

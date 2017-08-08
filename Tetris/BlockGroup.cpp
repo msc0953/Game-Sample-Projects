@@ -1,6 +1,4 @@
 #include "stdafx.h"
-#include "BlockGroup.h"
-#include "Block.h"
 
 static const bool BlockIndex[Configure::BlockGroupType][4][4] =
 {

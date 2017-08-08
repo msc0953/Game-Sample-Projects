@@ -1,6 +1,4 @@
 #include "StdAfx.h"
-#include "confing.h"
-#include "block.h"
 
 
 Block::Block(int x, int y) 

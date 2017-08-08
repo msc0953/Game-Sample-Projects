@@ -22,10 +22,11 @@
 // TODO: reference additional headers your program requires here
 #include "Input.h"
 #include "Tetris.h"
-#include "confing.h"
-#include "board.h"
+#include "Confing.h"
+#include "Board.h"
 #include "BlockGroup.h"
 #include "Block.h"
 #include "Input.h"
 #include "GameCore.h"
 #include "Render.h"
+
