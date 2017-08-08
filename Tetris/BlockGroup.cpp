@@ -67,7 +67,7 @@ Block* BlockGroup::GetBlocks(int index)
 		}
 	}
 
-	return &m_blocks[ix];
+	return m_blocks;
 }
 
 BlockGroup& BlockGroup::operator=(const BlockGroup& src)

@@ -7,7 +7,9 @@ private:
 	int m_y;
 
 public:
-	Block(int x=0, int y=0);
+	Block();
+	Block(int x, int y);
+	Block(const Block& b);
 	Block& operator=(const Block& src);
 
 	int getPosX();
