@@ -7,15 +7,16 @@ class BlockGroup
 public:
 	BlockGroup();
 	BlockGroup(int xpos, int ypos, int type);
+	BlockGroup& operator=(const BlockGroup& src);
 	virtual ~BlockGroup();
 
 public:
 	Block* GetBlocks();
-	BlockGroup& operator=(const BlockGroup& src);
+	void MoveDown();
 
 private:
 	void GetBlockGroupByType(int type);
-
+	
 private:
 	bool  m_pos[4][4];
 

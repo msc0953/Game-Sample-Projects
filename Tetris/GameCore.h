@@ -13,7 +13,7 @@ public:
 public:
 	void Init();
 	void Update();
-	void HandleKeyDown(WPARAM wParam) {}
+	void HandleKeyDown(HDC hdc, WPARAM wParam);
 	bool isRunning() { return true; }
 	void Draw(HDC hdc);
 

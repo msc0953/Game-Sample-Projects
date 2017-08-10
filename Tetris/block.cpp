@@ -38,3 +38,8 @@ int Block::getPosY()
 	return m_y;
 }
 
+void Block::MoveNext()
+{
+	m_y++;
+}
+

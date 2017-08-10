@@ -39,6 +39,35 @@ void Render::DrawBlocks(HDC hdc, BlockGroup* blocks)
 	}
 }
 
+void Render::CleanBlocks(HDC hdc, BlockGroup* blocks)
+{
+	Block* b = blocks->GetBlocks();
+	for (int i = 0; i < 4; i++)
+	{
+		CleanBlock(hdc, &b[i]);
+	}
+}
+
+void Render::CleanBlock(HDC hdc, Block* block)
+{
+	COLORREF BoundColor = RGB(255, 0, 0);
+	COLORREF InnerColor = RGB(255, 255, 255);
+
+	HPEN hPen = CreatePen(PS_SOLID, 0, BoundColor);
+	SelectObject(hdc, hPen);
+
+	HBRUSH hBrush = CreateSolidBrush(InnerColor);
+	SelectObject(hdc, hBrush);
+
+	int left = Configure::BorderLeft + block->getPosX() * Configure::SmallestLength;
+	int top = Configure::BorderTop + block->getPosY() * Configure::SmallestLength;
+
+	Rectangle(hdc, left - 1, top - 1, left + Configure::SmallestLength + 1, top + Configure::SmallestLength + 1);
+
+	DeleteObject(hBrush);
+	DeleteObject(hPen);
+}
+
 void Render::DrawBlock(HDC hdc, Block* block)
 {
 	COLORREF InnerColor = Configure::BLOCKBoundColor;

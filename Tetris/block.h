@@ -14,4 +14,6 @@ public:
 
 	int getPosX();
 	int getPosY();
+	
+	void MoveNext();
 };

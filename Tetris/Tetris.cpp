@@ -160,7 +160,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 	case WM_KEYDOWN:
 		{
-			tetris->HandleKeyDown(wParam);
+			HDC hdc = GetDC(hWnd);
+			tetris->HandleKeyDown(hdc, wParam);
 		}
 		break;
     case WM_PAINT:

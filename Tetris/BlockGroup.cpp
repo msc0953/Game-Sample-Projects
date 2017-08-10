@@ -68,6 +68,16 @@ Block* BlockGroup::GetBlocks()
 	return m_blocks;
 }
 
+void BlockGroup::MoveDown()
+{
+	m_y++;
+
+	for (int i = 0; i < 4; i++)
+	{
+		m_blocks[i].MoveNext();
+	}
+}
+
 BlockGroup& BlockGroup::operator=(const BlockGroup& src)
 {
 	m_x = src.m_x;

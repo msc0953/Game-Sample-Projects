@@ -34,6 +34,27 @@ void GameCore::Update()
 	
 }
 
+void GameCore::HandleKeyDown(HDC hdc, WPARAM wParam)
+{
+	switch (wParam)
+	{
+	case VK_LEFT:
+		break;
+	case VK_RIGHT:
+		break;
+	case VK_DOWN:
+		m_current->MoveDown();
+		Draw(hdc);
+		break;
+	case VK_UP:
+		break;
+	case VK_SPACE:
+		break;
+	default:
+		break;
+	}
+}
+
 void GameCore::Draw(HDC hdc)
 {
 	if (m_current == nullptr)
